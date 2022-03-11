@@ -2,15 +2,20 @@ import { Outlet, Link } from "react-router-dom";
 
 export default function App() {
   return (
-    <div>
-      <h1>Bookkeeper!</h1>
+    <div style={{ borderBottom: "solid 1px", paddingBottom: "1 rem"}}>
+      <h1 style={{backgroundColor: "rgb(92, 107, 112)", width: "500px", marginLeft: "auto", marginRight: "auto"}}>Codigos QR!</h1>
+      <p style={{alignItems: "center"}}><strong>En esta app se desarrollaran codigos QR</strong></p>
       <nav
       style={{ borderBottom: "solid 1px",
-              paddingBottom: "1 rem"
+              paddingBottom: "1 rem",
+              width: "200px",
+              marginLeft: "auto",
+              marginRight: "auto"
               }}
               >
-              <Link to="/invoices">Invoices</Link> |{" "}
-              <Link to="/expenses">Expenses</Link>
+              <Link to="/invoices">Invoices</Link> |{" "}{" "}
+              <Link to="/expenses">Expenses</Link> |{" "}{" "}
+              <Link to="/contact">contact</Link>
       </nav>
       <Outlet />
     </div>
