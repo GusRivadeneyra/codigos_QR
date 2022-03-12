@@ -1,18 +1,19 @@
-import { render } from "react-dom";
+import { render } from 'react-dom'
 import { ChakraProvider } from '@chakra-ui/react'
 import {
   BrowserRouter,
   Routes,
-  Route,
-} from "react-router-dom";
-import { AppLayout } from "./layouts/appLayout";
-import { QRCodes } from "./routes/qrCodes";
-import { QRCode } from "./components/qrCode"
+  Route
+} from 'react-router-dom'
+import { AppLayout } from './layouts/appLayout'
+import React from 'react'
+import { QRCodes } from './routes/qrCodes'
+import { QRCode } from './components/qrCode'
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root')
 render(
   <>
-    <ChakraProvider >
+    <ChakraProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AppLayout />} >
@@ -21,7 +22,7 @@ render(
               <Route
                 index
                 element={
-                  <main style={{ padding: "1 rem" }}>
+                  <main style={{ padding: '1 rem' }}>
                     <p>No QR code selected</p>
                   </main>
                 }
@@ -31,7 +32,7 @@ render(
             <Route
               path="*"
               element={
-                <main style={{ padding: "1 rem" }}>
+                <main style={{ padding: '1 rem' }}>
                   <p>404</p>
                   <p>Page not found</p>
                 </main>
@@ -42,4 +43,4 @@ render(
       </BrowserRouter>
     </ChakraProvider >
   </>,
-  rootElement);
+  rootElement)

@@ -1,6 +1,7 @@
-import { HStack, Icon, useColorModeValue } from '@chakra-ui/react'
-import * as React from 'react'
-import { FaStar } from 'react-icons/fa'
+import PropTypes from 'prop-types';
+import { HStack, Icon, useColorModeValue } from '@chakra-ui/react';
+import * as React from 'react';
+import { FaStar } from 'react-icons/fa';
 
 export const Rating = (props) => {
   const { defaultValue = 0, max = 5, size = 'md', rootProps } = props
@@ -9,7 +10,7 @@ export const Rating = (props) => {
   return (
     <HStack spacing="0.5" {...rootProps}>
       {Array.from({
-        length: max,
+        length: max
       })
         .map((_, index) => index + 1)
         .map((index) => (
@@ -22,4 +23,11 @@ export const Rating = (props) => {
         ))}
     </HStack>
   )
+}
+
+Rating.propTypes = {
+  defaultValue: PropTypes.number,
+  max: PropTypes.number,
+  size: PropTypes.string,
+  rootProps: PropTypes.object
 }
