@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 
-export default function App() {
+export function AppLayout() {
   return (
     <div style={{ borderBottom: "solid 1px", paddingBottom: "1 rem"}}>
       <h1 style={{backgroundColor: "rgb(92, 107, 112)", width: "500px", marginLeft: "auto", marginRight: "auto"}}>Codigos QR!</h1>
@@ -13,11 +13,10 @@ export default function App() {
               marginRight: "auto"
               }}
               >
-              <Link to="/invoices">Invoices</Link> |{" "}{" "}
-              <Link to="/expenses">Expenses</Link> |{" "}{" "}
-              <Link to="/contact">contact</Link>
+              <Link to="/codes">Codigos</Link> |{" "}{" "}
       </nav>
       <Outlet />
     </div>
   );
 }
+
