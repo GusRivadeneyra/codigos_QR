@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet, Link } from 'react-router-dom'
 
+
 export function AppLayout () {
   return (
     <div>
@@ -14,8 +15,8 @@ export function AppLayout () {
           marginRight: 'auto'
         }}
       >
-        <Link to="/codes">Mis codigos</Link>{' '}|{' '}
-        <Link to="/codes/create">Crear</Link>
+        <Link to="/codes">My codes</Link>{' '}|{' '}
+        <Link to="/create">create</Link>
       </nav>
       <Outlet />
     </div>

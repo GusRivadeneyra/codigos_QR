@@ -10,7 +10,7 @@ export const QuickResponseObjectEmptyState = () => {
 			  <Text>selecciona un item para ver su detalle, o crea uno nuevo</Text>
 			  <Center>
           <Box>
-            <Button onClick={() => navigate('/codes/create')}>Crear</Button>
+            <Button onClick={() => navigate('/create')}>Crear</Button>
           </Box>
         </Center>
 		  </Stack>

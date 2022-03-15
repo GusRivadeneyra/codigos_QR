@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom'
 import { AppLayout } from './layouts/appLayout'
 import { QuickResponseObjects } from './quickResponseObjects/quickResponseObjects'
-import {CreateQuickResponseObject} from './quickResponseObjects/createQuickResponseObject'
+import {CreateQuickResponseObject, ButtonCodes} from './quickResponseObjects/createQuickResponseObject'
 import { QuickResponseObjectEmptyState } from './quickResponseObjects/quickResponseObjectEmptyState'
 import { QRCode } from './components/qrcode'
 
@@ -22,9 +22,9 @@ render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AppLayout />} >
+					  <Route path="create" element={<CreateQuickResponseObject />}/> 
             <Route path="codes" element={<QuickResponseObjects />}>
-              <Route path=":codeId" element={<QRCode />} />
-              <Route path="create" element={<CreateQuickResponseObject />} />
+              {/* <Route path=":codeId" element={<QRCode />} /> */}
               <Route
                 index
                 element={
@@ -38,6 +38,7 @@ render(
                 <main style={{ padding: '1 rem' }}>
                   <p>404</p>
                   <p>Page not found</p>
+									<ButtonCodes></ButtonCodes>
                 </main>
               }
             />
