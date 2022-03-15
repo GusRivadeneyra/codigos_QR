@@ -3,19 +3,19 @@ import { Outlet, Link } from 'react-router-dom'
 
 export function AppLayout () {
   return (
-    <div style={{ borderBottom: 'solid 1px', paddingBottom: '1 rem' }}>
+    <div>
       <h1 style={{ backgroundColor: 'rgb(92, 107, 112)', width: '500px', marginLeft: 'auto', marginRight: 'auto' }}>Codigos QR!</h1>
-      <p style={{ alignItems: 'center' }}><strong>En esta app se desarrollaran codigos QR</strong></p>
+      <br></br>
       <nav
         style={{
-          borderBottom: 'solid 1px',
           paddingBottom: '1 rem',
-          width: '200px',
+          width: '250px',
           marginLeft: 'auto',
           marginRight: 'auto'
         }}
       >
-        <Link to="/codes">Codigos</Link> |{' '}{' '}
+        <Link to="/codes">Mis codigos</Link>{' '}|{' '}
+        <Link to="/codes/create">Crear</Link>
       </nav>
       <Outlet />
     </div>

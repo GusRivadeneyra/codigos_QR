@@ -1,14 +1,19 @@
+import React from 'react'
 import { render } from 'react-dom'
-import { ChakraProvider } from '@chakra-ui/react'
+import { Button, ChakraProvider } from '@chakra-ui/react'
 import {
   BrowserRouter,
   Routes,
-  Route
+  Route,
+  useNavigate
 } from 'react-router-dom'
 import { AppLayout } from './layouts/appLayout'
-import React from 'react'
-import { QRCodes } from './routes/qrCodes'
-import { QRCode } from './components/qrCode'
+import { QuickResponseObjects } from './quickResponseObjects/quickResponseObjects'
+import {CreateQuickResponseObject} from './quickResponseObjects/createQuickResponseObject'
+import { QuickResponseObjectEmptyState } from './quickResponseObjects/quickResponseObjectEmptyState'
+import { QRCode } from './components/qrcode'
+
+
 
 const rootElement = document.getElementById('root')
 render(
@@ -17,17 +22,15 @@ render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AppLayout />} >
-            <Route path="codes" element={<QRCodes />}>
+            <Route path="codes" element={<QuickResponseObjects />}>
               <Route path=":codeId" element={<QRCode />} />
+              <Route path="create" element={<CreateQuickResponseObject />} />
               <Route
                 index
                 element={
-                  <main style={{ padding: '1 rem' }}>
-                    <p>No QR code selected</p>
-                  </main>
+                  <QuickResponseObjectEmptyState />
                 }
               />
-
             </Route>
             <Route
               path="*"
