@@ -1,54 +1,71 @@
-import React from 'react'
-import { Container, Stack, HStack, Button, Text, FormControl, FormLabel, Input, InputGroup, InputLeftAddon, box, Box} from '@chakra-ui/react';
+import React,  { useState } from 'react'
+import { Container, Stack, HStack, Button, Text, FormControl, FormLabel, Input, InputGroup, InputLeftAddon, Box } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import QRCode from 'react-qr-code';
 
 
 export const CreateQuickResponseObject = () => {
-
-	let navigate = useNavigate();
+	const navigate = useNavigate();
+	const [title, setTitle] = useState('')
+	const [url, setUrl] = useState('')
+	const [descr, setDescr] = useState('')
 
 	return (
 
 		<Container maxW='container.lg' centerContent py={50} >
 			<Text>Aqui se creare el QRO</Text>
 
-			
-			<Stack w='60%'>
-				<FormControl >
-					<FormLabel htmlFor='email'>QR TITLE</FormLabel>
-					<Input id='email' type='email' />
-				</FormControl>
-			</Stack>
-			
-			<Stack spacing={4} w='60%' py={30}>
-			
-				<InputGroup size='sm'>
-					<FormLabel htmlFor='email'>URL</FormLabel>
-					<InputLeftAddon children='https://' />
-					<Input placeholder='mysite' />
-				</InputGroup>
-			</Stack>
-
-			<Stack w='60%' >
-				<FormControl>
-					<FormLabel htmlFor='email'>Description</FormLabel>
-					<Input id='email' type='email' />
-				</FormControl>
-			</Stack>
-			<Stack py={30}>
-				<Stack>
-					<QRCode value='http://www.google.com'></QRCode>
+			<ShadowedBox>
+				<Stack w='100%'>
+					<FormControl >
+						<FormLabel>QR TITLE</FormLabel>
+						<Input value={title} onChange={(event) => {
+							const newValue = event.target.value
+							setTitle(newValue)
+						}} />
+					</FormControl>
 				</Stack>
-				<HStack>
-					<Button onClick={() => { navigate("/codes"); }}> cancel </Button>
-					<Button onClick={() => { navigate("/codes"); }}> Save </Button>
-					<Button onClick={() => { navigate("/codes"); }}> Regresar </Button>
-				</HStack>
-			</Stack>
-			
+
+				<Stack spacing={4} w='100%' py={30}>
+					<InputGroup size='lg'>
+						<FormLabel htmlFor='email'>URL</FormLabel>
+						<InputLeftAddon children='https://' />
+						<Input value={url} onChange={(event) =>{
+							const newValue = event.target.value 
+							setUrl(newValue)
+						}} />
+					</InputGroup>
+				</Stack>
+
+				<Stack w='100%'>
+					<FormControl>
+						<FormLabel htmlFor='email'>Description</FormLabel>
+						<Input value={descr} onChange={(event) =>{
+							const newValue = event.target.value 
+							setDescr(newValue)
+						}} />
+					</FormControl>
+				
+				</Stack>
+				<Stack py={30} w='100%'>
+					<Stack Center>
+						<QRCode value='http://www.google.com'></QRCode>
+					</Stack>
+					<HStack w='100%'>
+						<Button onClick={() => { navigate("/codes"); }}> cancel </Button>
+						<Button onClick={() => { navigate("/codes"); }}> Save </Button>
+						<Button onClick={() => { navigate("/codes"); }}> Regresar </Button>
+					</HStack>
+				</Stack>
+			</ShadowedBox>
 		</Container>
 	);
+}
+
+const ShadowedBox = ({ children }) => {
+	return (<Box boxShadow='dark-lg' p='8' rounded='md' bg='white'>
+		{children}
+	</Box>)
 }
 
 export const ButtonCodes = () => {
