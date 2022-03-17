@@ -16,6 +16,7 @@ export function QRCode() {
   const code = qrCodes.find((code) => code.id === codeId )
   if (!code) return <ErrorMessage />
 
+
   return (
     <div style={{ gap: '5em', display: "flex", marginTop: 20 }}>
       <Heading>{code.codeValue}</Heading>
