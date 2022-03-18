@@ -9,10 +9,10 @@ import {
 } from 'react-router-dom'
 import { AppLayout } from './layouts/appLayout'
 import { QuickResponseObjects } from './quickResponseObjects/quickResponseObjects'
-import { CreateQuickResponseObject, ButtonCodes } from './quickResponseObjects/createQuickResponseObject'
+import { CreateQuickResponseObject, ButtonCodes, } from './quickResponseObjects/createQuickResponseObject'
 import { QuickResponseObjectEmptyState } from './quickResponseObjects/quickResponseObjectEmptyState'
 import { QRCode } from './components/qrcode'
-
+import { QuickResponeObjectDetail } from './quickResponseObjects/quickResponseObjectDetail'
 
 
 const rootElement = document.getElementById('root')
@@ -32,7 +32,7 @@ render(
 								}
 							/>
 						</Route>
-						<Route path="codes/:codeId" element={<QRCode />} />
+						<Route path="codes/:codeId" element={<QuickResponeObjectDetail />} />
 						<Route
 							path="*"
 							element={

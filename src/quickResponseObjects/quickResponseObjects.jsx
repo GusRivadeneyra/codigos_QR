@@ -1,29 +1,28 @@
 import React from 'react';
-import { NavLink, Outlet, useSearchParams } from 'react-router-dom';
+import { Box, SimpleGrid, Heading, Text, Center, Stack, FormControl, FormLabel, Input } from "@chakra-ui/react";
+
+
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { qrCodes } from '../data/data';
 
 export function QuickResponseObjects() {
 	const [searchParams, setSearchParams] = useSearchParams();
-
+	const navigate = useNavigate()
 	return (
-		<div style={{ display: 'flex' }}>
-			<nav
-				style={{
-					borderRight: 'solid 1px',
-					padding: '1rem',
-				}}
-			>
-				<input
-					value={searchParams.get('filter') || ''}
-					onChange={(event) => {
-						const filter = event.target.value;
-						if (filter) {
-							setSearchParams({ filter });
-						} else {
-							setSearchParams({});
-						}
-					}}
-				/>
+		<Stack spacing={6}>
+			<Heading>Mis *******</Heading>
+			<FormControl>
+				<FormLabel htmlFor='filter'>Buscador</FormLabel>
+				<Input name="filter" value={searchParams.get('filter') || ''} onChange={(event) => {
+					const filter = event.target.value;
+					if (filter) {
+						setSearchParams({ filter });
+					} else {
+						setSearchParams({});
+					}
+				}} />
+			</FormControl>
+			<SimpleGrid columns={3} spacing={10}>
 				{qrCodes
 					// .filter((code) => {
 					//   let filter = searchParams.get("filter");
@@ -32,22 +31,23 @@ export function QuickResponseObjects() {
 					//   return name.startsWith(filter.toLowerCase());
 					// })
 					.map((code) => (
-						<NavLink
-							style={({ isActive }) => {
-								return {
-									display: 'block',
-									margin: '1rem 0',
-									color: isActive ? 'red' : '',
-								};
-							}}
-							to={`/codes/${code.id}`}
-							key={code.id}
-						>
-							{code.title}
-						</NavLink>
+						<ShadowedBox key={code.id} onClick={() => {
+							navigate(`/codes/${code.id}`)
+						}}>
+							<Center>
+								<Text>
+									{code.title}
+								</Text>
+							</Center>
+						</ShadowedBox>
 					))}
-			</nav>
-			<Outlet />
-		</div>
+			</SimpleGrid>
+		</Stack>
 	);
+}
+
+const ShadowedBox = ({ children }) => {
+	return (<Box boxShadow='lg' p='8' rounded='md' bg='white'>
+		{children}
+	</Box>)
 }
