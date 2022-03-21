@@ -1,6 +1,8 @@
-import React,  { useState } from 'react'
-import { Container, Stack, HStack, Button, Text, FormControl, FormLabel, Input, InputGroup, InputLeftAddon, Box,
-Editable, EditableInput, EditableTextarea, EditablePreview } from '@chakra-ui/react';
+import React, { useState } from 'react'
+import {
+	Container, Stack, HStack, Button, Text, FormControl, FormLabel, Input, InputGroup, InputLeftAddon, Box,
+	Editable, EditableInput, EditableTextarea, EditablePreview
+} from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import QRCode from 'react-qr-code';
 
@@ -8,37 +10,28 @@ import { qrCodes } from '../data/data'
 
 
 export const QuickResponeObjectDetail = () => {
-	const navigate = useNavigate();
-	
+	const navigate = useNavigate()
 
 	return (
-
 		<Container maxW='container.lg' centerContent py={50} >
-
-			<ShadowedBox>
-
+			<Box boxShadow='dark-lg' p='8' rounded='md' bg='white'>
 				<Stack w='100%'>
 					<FormControl>
 						<FormLabel htmlFor='email'>TITLE</FormLabel>
 						<Input isDisabled />
 					</FormControl>
-				
 				</Stack>
-
 				<Stack w='100%'>
 					<FormControl>
 						<FormLabel htmlFor='email'>URL</FormLabel>
-						<Input isDisabled  />
+						<Input isDisabled />
 					</FormControl>
-				
 				</Stack>
-
 				<Stack w='100%'>
 					<FormControl>
 						<FormLabel htmlFor='email'>Description</FormLabel>
-						<Input isDisabled  />
+						<Input isDisabled />
 					</FormControl>
-				
 				</Stack>
 				<Stack py={30} w='100%'>
 					<Stack Center>
@@ -49,13 +42,7 @@ export const QuickResponeObjectDetail = () => {
 						<Button onClick={() => { navigate("/cancel"); }}> Save </Button>
 					</HStack>
 				</Stack>
-			</ShadowedBox>
+			</Box>
 		</Container>
 	);
-}
-
-const ShadowedBox = ({ children }) => {
-	return (<Box boxShadow='dark-lg' p='8' rounded='md' bg='white'>
-		{children}
-	</Box>)
 }

@@ -1,19 +1,16 @@
 import React from 'react';
-import { Box, SimpleGrid, Heading, Text, Center, Stack, FormControl, FormLabel, Input } from "@chakra-ui/react";
-
-
+import { Container, Box, SimpleGrid, Heading, Text, Center, Stack, FormControl, Input } from "@chakra-ui/react";
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { qrCodes } from '../data/data';
+import { qrCodes } from '../data/data'
 
 export function QuickResponseObjects() {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const navigate = useNavigate()
 	return (
-		<Stack spacing={6}>
-			<Heading>Mis *******</Heading>
-			<FormControl>
-				<FormLabel htmlFor='filter'>Buscador</FormLabel>
-				<Input name="filter" value={searchParams.get('filter') || ''} onChange={(event) => {
+		<Container maxW="xl">
+			<Stack spacing={2}>
+				<Heading>Mis *******</Heading>
+				<Input name="filter" placeholder='busca por Titulo' value={searchParams.get('filter') || ''} onChange={(event) => {
 					const filter = event.target.value;
 					if (filter) {
 						setSearchParams({ filter });
@@ -21,33 +18,34 @@ export function QuickResponseObjects() {
 						setSearchParams({});
 					}
 				}} />
-			</FormControl>
-			<SimpleGrid columns={3} spacing={10}>
-				{qrCodes
-					// .filter((code) => {
-					//   let filter = searchParams.get("filter");
-					//   if (!filter) return true;
-					//   let name = code.title.toLowerCase();
-					//   return name.startsWith(filter.toLowerCase());
-					// })
-					.map((code) => (
-						<ShadowedBox key={code.id} onClick={() => {
-							navigate(`/codes/${code.id}`)
-						}}>
-							<Center>
-								<Text>
-									{code.title}
-								</Text>
-							</Center>
-						</ShadowedBox>
-					))}
-			</SimpleGrid>
-		</Stack>
+				<SimpleGrid columns={3} spacing={5}>
+					{qrCodes
+						.filter((code) => {
+							const filter = searchParams.get("filter");
+							if (!filter) return true;
+							const name = code.title.toLowerCase();
+							const nameHasStringSearchCriteria = name.startsWith(filter.toLowerCase()) || name.includes(filter.toLowerCase())
+							return nameHasStringSearchCriteria;
+						})
+						.map((code) => (
+							<Box key={code.id} cursor="pointer" boxShadow='lg' p='8' rounded='md' bg='white'
+								_hover={{
+									boxShadow: 'xl',
+									bg: 'gray.200'
+								}}
+								onClick={() => {
+									navigate(`/codes/${code.id}`)
+								}}
+							>
+								<Center>
+									<Text>
+										{code.title}
+									</Text>
+								</Center>
+							</Box>
+						))}
+				</SimpleGrid>
+			</Stack>
+		</Container>
 	);
-}
-
-const ShadowedBox = ({ children }) => {
-	return (<Box boxShadow='lg' p='8' rounded='md' bg='white'>
-		{children}
-	</Box>)
 }
