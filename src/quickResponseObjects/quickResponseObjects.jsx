@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Box, SimpleGrid, Heading, Text, Center, Stack, FormControl, Input } from "@chakra-ui/react";
+import { Container, Box, SimpleGrid, Heading, Text, Center, Stack, Input } from "@chakra-ui/react";
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { qrCodes } from '../data/data'
 
@@ -18,7 +18,7 @@ export function QuickResponseObjects() {
 						setSearchParams({});
 					}
 				}} />
-				<SimpleGrid columns={3} spacing={5}>
+				<SimpleGrid columns={4} spacing={5}>
 					{qrCodes
 						.filter((code) => {
 							const filter = searchParams.get("filter");

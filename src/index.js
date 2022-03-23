@@ -1,17 +1,16 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Button, ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import {
 	BrowserRouter,
 	Routes,
 	Route,
-	useNavigate
+
 } from 'react-router-dom'
 import { AppLayout } from './layouts/appLayout'
 import { QuickResponseObjects } from './quickResponseObjects/quickResponseObjects'
 import { CreateQuickResponseObject, } from './quickResponseObjects/createQuickResponseObject'
-import { QuickResponseObjectEmptyState } from './quickResponseObjects/quickResponseObjectEmptyState'
-import { QRCode } from './components/qrcode'
+
 import { QuickResponeObjectDetail } from './quickResponseObjects/quickResponseObjectDetail'
 
 
