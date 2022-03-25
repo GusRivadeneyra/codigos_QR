@@ -15,11 +15,6 @@ export const QuickResponeObjectDetail = () => {
 
 	const code = qrCodes.find((code) => codeId === (code.id).toString());
 
-	const amigos = ['Joseph', 'Glenn', 'Sally']
-	for amigos in amigos,
-		print('Feliz año nuevo:' amigos)
-		print('terminado')
-
 
 	return (
 		<Container centerContent pt={8}>
@@ -57,7 +52,6 @@ export const QuickResponeObjectDetail = () => {
 						</Button>
 					</HStack>
 				</Stack>
-				<buttonExample></buttonExample>
 			</Box>
 		</Container>
 
