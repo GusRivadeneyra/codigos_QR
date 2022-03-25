@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Container, Center, Stack, HStack, Button, Text, FormControl, FormLabel, Input, Textarea, InputGroup, InputLeftAddon, Box, Editable, EditableInput, EditableTextarea, EditablePreview } from '@chakra-ui/react';
+import { Container, Stack, HStack, Button, Text, FormControl, FormLabel, Input, Textarea, InputGroup, InputLeftAddon, Box, } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { FaFacebook, } from 'react-icons/fa'
 import QRCode from 'react-qr-code';
+
 
 
 export const CreateQuickResponseObject = () => {
@@ -19,47 +21,61 @@ export const CreateQuickResponseObject = () => {
 
 			<Box w="max" boxShadow='dark-lg' p='8' rounded='md' bg='white'>
 
+				<Stack spacing={4}>
+					<HStack>
+						<Stack w='100%' spacing={3}>
+							<HStack>
+								<FormControl >
+									<FormLabel htmlFor='title'>QR TITLE</FormLabel>
+									<Input name="title" value={title} onChange={(event) => {
+										const newValue = event.target.value
+										setTitle(newValue)
+									}} />
+								</FormControl>
+							</HStack>
+							<FormControl>
+								<FormLabel htmlFor='description'>Description</FormLabel>
+								<Textarea name='description' value={description} onChange={(event) => {
+									const newValue = event.target.value
+									setDescription(newValue)
+								}} />
+							</FormControl>
+						</Stack>
+						<Stack>
 
-				<Stack w='100%' spacing={3}>
-					<FormControl >
-						<FormLabel htmlFor='title'>QR TITLE</FormLabel>
-						<Input name="title" value={title} onChange={(event) => {
-							const newValue = event.target.value
-							setTitle(newValue)
-						}} />
-					</FormControl>
-					<FormControl >
-						<FormLabel htmlFor='url'>URL</FormLabel>
-						<InputGroup size='lg'>
-							<InputLeftAddon children='https://' />
-							<Input name='url' value={url} onChange={(event) => {
-								const newValue = event.target.value
-								setUrl(newValue)
-							}} />
-						</InputGroup>
-					</FormControl>
-					<FormControl>
-						<FormLabel htmlFor='description'>Description</FormLabel>
-						<Textarea name='description' value={description} onChange={(event) => {
-							const newValue = event.target.value
-							setDescription(newValue)
-						}} />
-					</FormControl>
-				</Stack>
+							<QRCode value='http://www.google.com'></QRCode>
 
-
-				<Stack py={30} w='100%'>
-					<Center >
-						<QRCode value='http://www.google.com'></QRCode>
-					</Center>
-					<HStack w='100%' justify="space-evenly">
-						<Button onClick={() => { navigate("/codes"); }}> cancel </Button>
-						<Button onClick={() => {
-							console.log(title)
-							console.log(url)
-							console.log(description)
-						}}> Save </Button>
+						</Stack>
 					</HStack>
+
+					<InputGroup size='lg'>
+						<InputLeftAddon />
+						<Input value={url} onChange={(event) => {
+							const newValue = event.target.value
+							setUrl(newValue)
+						}} />
+					</InputGroup>
+
+					<Stack >
+
+						<HStack w='100%' justify="center">
+
+							<Button onClick={() => { navigate("/codes"); }}> cancel </Button>
+							<Button onClick={() => {
+								console.log(title)
+								console.log(url)
+								console.log(description)
+							}}> Save </Button>
+
+						</HStack>
+
+						<HStack justify="end">
+							<Button colorScheme='facebook' leftIcon={<FaFacebook />} >
+								Facebook
+							</Button>
+						</HStack>
+
+					</Stack>
 				</Stack>
 			</Box>
 		</Container>

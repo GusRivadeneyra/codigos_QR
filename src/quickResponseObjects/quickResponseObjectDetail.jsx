@@ -2,6 +2,7 @@ import React from 'react'
 import {
 	Container, Box, Stack, HStack, Button, Textarea, FormControl, FormLabel, Input
 } from '@chakra-ui/react';
+import { FaFacebook, } from 'react-icons/fa'
 import { useNavigate, useParams } from 'react-router-dom';
 import QRCode from 'react-qr-code';
 import { qrCodes } from '../data/data'
@@ -11,9 +12,14 @@ export const QuickResponeObjectDetail = () => {
 	const navigate = useNavigate();
 	const { codeId } = useParams()
 
-	console.log(codeId)
 
 	const code = qrCodes.find((code) => codeId === (code.id).toString());
+
+	const amigos = ['Joseph', 'Glenn', 'Sally']
+	for amigos in amigos,
+		print('Feliz año nuevo:' amigos)
+		print('terminado')
+
 
 	return (
 		<Container centerContent pt={8}>
@@ -45,9 +51,17 @@ export const QuickResponeObjectDetail = () => {
 						<Button onClick={() => { navigate("/edit"); }}> cancel </Button>
 						<Button onClick={() => { navigate("/cancel"); }}> Save </Button>
 					</HStack>
+					<HStack justify="end">
+						<Button colorScheme='facebook' leftIcon={<FaFacebook />}  >
+							Facebook
+						</Button>
+					</HStack>
 				</Stack>
-
+				<buttonExample></buttonExample>
 			</Box>
 		</Container>
+
+
 	);
 }
+
