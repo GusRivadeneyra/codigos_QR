@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Container, Stack, HStack, Button, Text, FormControl, FormLabel, Input, Textarea, InputGroup, InputLeftAddon, Box, } from '@chakra-ui/react';
+import React, { useState, useEffect } from 'react'
+import { Container, Stack, HStack, Button, Text, FormControl, FormLabel, Input, Textarea, InputGroup, InputLeftAddon, Box, Alert, AlertIcon, AlertTitle, Progress } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { FaFacebook, } from 'react-icons/fa'
 import QRCode from 'react-qr-code';
@@ -11,6 +11,49 @@ export const CreateQuickResponseObject = () => {
 	const [title, setTitle] = useState('')
 	const [url, setUrl] = useState('')
 	const [description, setDescription] = useState('')
+
+	const [data, setData] = useState()
+	const [isLoading, setIsLoading] = useState(true)
+	const [error, setError] = useState(false)
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const rawResult = await fetch('/api')
+
+			if (rawResult.status !== 200) {
+				setIsLoading(false)
+				setError(true)
+			}
+			const result = await rawResult.json()
+			setData(result)
+			setIsLoading(false)
+		}
+		fetchData()
+
+	}, [])
+
+	console.log('states')
+	console.log(data)
+	console.log(isLoading)
+	console.log(error)
+
+
+
+	if (error) {
+		return (
+			<Container>
+				<Alert status='error'>
+					<AlertIcon />
+					<AlertTitle mr={2}>Error!</AlertTitle>
+				</Alert>
+			</Container>)
+	}
+
+	if ((isLoading && !error) || !data) return (
+		<Container>
+			<Progress size='xs' isIndeterminate colorScheme={"blackAlpha"} />
+		</Container>
+	)
 
 	return (
 

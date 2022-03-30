@@ -1,11 +1,66 @@
-import React from 'react';
-import { Container, Box, SimpleGrid, Heading, Text, Center, Stack, Input } from "@chakra-ui/react";
+import React, { useEffect, useState } from 'react';
+import {
+	Container,
+	Box,
+	SimpleGrid,
+	Heading,
+	Text,
+	Center,
+	Stack,
+	Input,
+	Progress,
+	Alert,
+	AlertIcon,
+	AlertTitle,
+} from "@chakra-ui/react";
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { qrCodes } from '../data/data'
 
 export function QuickResponseObjects() {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const navigate = useNavigate()
+	const [data, setData] = useState()
+	const [isLoading, setIsLoading] = useState(true)
+	const [error, setError] = useState(false)
+
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const rawResult = await fetch('/api')
+
+			if (rawResult.status !== 200) {
+				setIsLoading(false)
+				setError(true)
+			}
+			const result = await rawResult.json()
+			setData(result)
+			setIsLoading(false)
+		}
+		fetchData()
+
+	}, [])
+
+	console.log('states')
+	console.log(data)
+	console.log(isLoading)
+	console.log(error)
+
+
+	if (error) {
+		<Container>
+			<Alert status='error'>
+				<AlertIcon />
+				<AlertTitle mr={2}>Error!</AlertTitle>
+			</Alert>
+		</Container>
+	}
+
+	if ((isLoading && !error) || !data) return (
+		<Container>
+			<Progress size='xs' isIndeterminate colorScheme={"blackAlpha"} />
+		</Container>
+	)
+
+
 	return (
 		<Container maxW="xl">
 			<Stack spacing={2}>
@@ -19,7 +74,7 @@ export function QuickResponseObjects() {
 					}
 				}} />
 				<SimpleGrid columns={4} spacing={5}>
-					{qrCodes
+					{data
 						.filter((code) => {
 							const filter = searchParams.get("filter");
 							if (!filter) return true;

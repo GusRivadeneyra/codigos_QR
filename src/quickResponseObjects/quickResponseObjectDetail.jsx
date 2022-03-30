@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-	Container, Box, Stack, HStack, Button, Textarea, FormControl, FormLabel, Input
+	Container, Box, Stack, HStack, Button, Textarea, FormControl, FormLabel, Input, Progress, Alert, AlertIcon, AlertTitle,
 } from '@chakra-ui/react';
 import { FaFacebook, } from 'react-icons/fa'
 import { useNavigate, useParams } from 'react-router-dom';
@@ -12,10 +12,49 @@ export const QuickResponeObjectDetail = () => {
 	const navigate = useNavigate();
 	const { codeId } = useParams()
 
+	const [data, setData] = useState()
+	const [isLoading, setIsLoading] = useState(true)
+	const [error, setError] = useState(false)
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const rawResult = await fetch('/api')
+
+			if (rawResult.status !== 200) {
+				setIsLoading(false)
+				setError(true)
+			}
+			const result = await rawResult.json()
+			setData(result)
+			setIsLoading(false)
+		}
+		fetchData()
+
+	}, [])
+
+	console.log('states')
+	console.log(data)
+	console.log(isLoading)
+	console.log(error)
+
+
+	if (error) {
+		<Container>
+			<Alert status='error'>
+				<AlertIcon />
+				<AlertTitle mr={2}>Error!</AlertTitle>
+			</Alert>
+		</Container>
+	}
+
+	if ((isLoading && !error) || !data) return (
+		<Container>
+			<Progress size='xs' isIndeterminate colorScheme={"blackAlpha"} />
+		</Container>
+	)
+
 
 	const code = qrCodes.find((code) => codeId === (code.id).toString());
-
-
 	return (
 		<Container centerContent pt={8}>
 
