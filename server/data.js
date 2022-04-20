@@ -1,4 +1,5 @@
-export const qrCodes = [
+/* eslint-disable no-undef */
+module.exports.qrCodes = [
 	{
 		id: 1,
 		title: 'Coladera 124',
@@ -180,4 +181,3 @@ export const qrCodes = [
 		description: 'Para figuras: 124RCINOX, 125RCINOX, Refacción para coladera de hierro',
 	},
 ]
-
