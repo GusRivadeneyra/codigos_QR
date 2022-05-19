@@ -13,8 +13,10 @@
     "cookie-parser": "^1.4.6",
     "debug": "^4.3.4",
     "express": "^4.17.3",
+    "firebase": "^9.7.0",
     "framer-motion": "^6.2.8",
     "http-errors": "^1.8.1",
+    "mongoose": "^6.3.1",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -22,10 +24,11 @@
     "react-qr-code": "^2.0.3",
     "react-router-dom": "^6.2.2",
     "react-scripts": "^5.0.0",
+    "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-client": "react-scripts start",
     "start-server": "nodemon server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",

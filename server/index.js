@@ -1,24 +1,20 @@
-/* eslint-disable indent */
-/* eslint-disable no-undef */
-const http = require('http');
-const createError = require('http-errors');
-const express = require('express');
-// const path = require('path');
-const cookieParser = require('cookie-parser');
-const debug = require('debug')('codigosqr:server');
+import { createServer } from 'http';
+import createError from 'http-errors';
+import express, { json, urlencoded } from 'express';
+import cookieParser from 'cookie-parser';
+import Debug from 'debug'
+
+import { qrCodes } from './data.js'
+
 const app = express();
+const debug = Debug('codigosqr:server')
 
-const { qrCodes } = require('../server/data');
-
-
-
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(json());
+app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, '..', 'public/')));
 
-app.use('/api', (req, res) => {
+app.get('/api/codes', (req, res) => {
 	console.log(`Request for /api`)
 	const resolve = () => {
 		console.log(`...Responding for /api`)
@@ -28,6 +24,10 @@ app.use('/api', (req, res) => {
 
 });
 
+app.post('/api/create', (req, res) => {
+	console.log(req.body)
+	return res.send('puto')
+})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -45,18 +45,15 @@ app.use(function (err, req, res) {
 	res.render('error');
 });
 
-
+// eslint-disable-next-line no-undef
 const port = normalizePort(process.env.PORT || '4000');
 app.set('port', port);
 
-
-const server = http.createServer(app);
-
+const server = createServer(app);
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
 
 
 /**
@@ -78,7 +75,6 @@ function normalizePort(val) {
 
 	return false;
 }
-
 
 function onError(error) {
 	if (error.syscall !== 'listen') {
@@ -116,3 +112,4 @@ function onListening() {
 	debug('Listening on ' + bind);
 	console.log(`Listening on ${bind}`)
 }
+

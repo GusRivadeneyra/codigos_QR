@@ -1,5 +1,4 @@
-/* eslint-disable no-undef */
-module.exports.qrCodes = [
+export const qrCodes = [
 	{
 		id: 1,
 		title: 'Coladera 124',
