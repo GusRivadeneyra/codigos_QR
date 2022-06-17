@@ -3,7 +3,7 @@ export const qrCodes = [
 		id: 1,
 		title: 'Coladera 124',
 		codeValue: 'https://urrea.mx/es/producto/126/124',
-		description: 'Rejilla redonda removible de acero inoxidable, Cuerpo de una conexión de 2" (5 cm), Céspol integrado en la fundición para un perfecto sello hidráulico que evita la filtración de malos olores',
+		description: 'Rejillaaaaa redonda removible de acero inoxidable, Cuerpo de una conexión de 2" (5 cm), Céspol integrado en la fundición para un perfecto sello hidráulico que evita la filtración de malos olores',
 	},
 	{
 		id: 2,
