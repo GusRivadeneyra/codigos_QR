@@ -5,5 +5,5 @@ import { App } from './app'
 
 const rootElement = document.getElementById('root')
 render(
-	<App />,
-	rootElement)
+  <App />,
+  rootElement)

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Outlet, Link, useMatch, useNavigate } from 'react-router-dom'
-import { Button, Breadcrumb, BreadcrumbItem, Container, Heading } from '@chakra-ui/react'
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { Breadcrumb, BreadcrumbItem, Container, Heading } from '@chakra-ui/react'
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../authentication/firebase/firebase';
 
 
@@ -46,11 +46,7 @@ export function AppLayout() {
           <Link to="/create">create</Link>
         </BreadcrumbItem>
         <BreadcrumbItem  >
-          <Button onClick={() => {
-            signOut(auth)
-          }}>
-						signout
-          </Button>
+         
 
         </BreadcrumbItem>
       </Breadcrumb>
