@@ -17,7 +17,7 @@ export const QuickResponeObjectDetail = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const rawResult = await fetch('/api')
+      const rawResult = await fetch('/api/codes')
 
       if (rawResult.status !== 200) {
         setIsLoading(false)

@@ -36,7 +36,7 @@ export function AppLayout() {
   return (
     <Container maxW='container.lg' centerContent py={5}>
       <Heading>
-				QR codes {`${user}`}
+				QR codes 
       </Heading>
       <Breadcrumb>
         <BreadcrumbItem>
@@ -44,10 +44,6 @@ export function AppLayout() {
         </BreadcrumbItem>
         <BreadcrumbItem>
           <Link to="/create">create</Link>
-        </BreadcrumbItem>
-        <BreadcrumbItem  >
-         
-
         </BreadcrumbItem>
       </Breadcrumb>
       <Outlet />

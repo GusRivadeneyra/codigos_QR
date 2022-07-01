@@ -5,7 +5,8 @@ import { AppLayout } from './layouts/appLayout'
 import { QuickResponseObjects } from './quickResponseObjects/quickResponseObjects'
 import { CreateQuickResponseObject, } from './quickResponseObjects/createQuickResponseObject'
 import { QuickResponeObjectDetail } from './quickResponseObjects/quickResponseObjectDetail'
-import { StartApp } from './quickResponseObjects/startApp'
+import { StartApp} from './noAuthenticated/newSignup'
+import { SignIn} from './noAuthenticated/newSignin'
 
 export const App = () => {
   return (
@@ -13,7 +14,7 @@ export const App = () => {
       <ChakraProvider>
         <BrowserRouter>
           <Routes>
-            <Route index element={<StartApp />} />
+            <Route index element={<SignIn />} />
             <Route path="/" element={<AppLayout />} >
               <Route path="create" element={<CreateQuickResponseObject />} />
               <Route path="codes" element={<QuickResponseObjects />} />
@@ -28,6 +29,8 @@ export const App = () => {
                 }
               />
             </Route>
+            <Route path="/StartApp" element={<StartApp />} />
+
           </Routes>
         </BrowserRouter>
       </ChakraProvider >
