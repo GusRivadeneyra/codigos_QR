@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Outlet, Link, useMatch, useNavigate } from 'react-router-dom'
-import { Button, Breadcrumb, BreadcrumbItem, Container, Heading } from '@chakra-ui/react'
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { Breadcrumb, BreadcrumbItem, Container, Heading } from '@chakra-ui/react'
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../authentication/firebase/firebase';
 
 
@@ -36,7 +36,7 @@ export function AppLayout() {
   return (
     <Container maxW='container.lg' centerContent py={5}>
       <Heading>
-				QR codes {`${user}`}
+				QR codes 
       </Heading>
       <Breadcrumb>
         <BreadcrumbItem>
@@ -44,14 +44,6 @@ export function AppLayout() {
         </BreadcrumbItem>
         <BreadcrumbItem>
           <Link to="/create">create</Link>
-        </BreadcrumbItem>
-        <BreadcrumbItem  >
-          <Button onClick={() => {
-            signOut(auth)
-          }}>
-						signout
-          </Button>
-
         </BreadcrumbItem>
       </Breadcrumb>
       <Outlet />

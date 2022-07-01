@@ -6,6 +6,7 @@ import Debug from 'debug'
 
 import { qrCodes } from './data.js'
 
+const DEFAULT_PORT = '4000'
 const app = express();
 const debug = Debug('codigosqr:server')
 
@@ -46,7 +47,7 @@ app.use(function (err, req, res) {
 });
 
 // eslint-disable-next-line no-undef
-const port = normalizePort(process.env.PORT || '4000');
+const port = normalizePort(process.env.PORT || DEFAULT_PORT);
 app.set('port', port);
 
 const server = createServer(app);

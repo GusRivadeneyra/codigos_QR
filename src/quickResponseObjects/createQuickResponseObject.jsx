@@ -14,6 +14,7 @@ export const CreateQuickResponseObject = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
 
+
   const createQuickResponseObject = async (data) => {
     setIsLoading(true)
     try {
