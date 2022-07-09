@@ -17,6 +17,7 @@ export const QuickResponeObjectDetail = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log('hola monk')
       const rawResult = await fetch('/api/codes')
 
       if (rawResult.status !== 200) {
