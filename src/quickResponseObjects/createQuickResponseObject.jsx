@@ -1,52 +1,12 @@
 import React, { useState } from 'react'
 import { Container, Stack, HStack, Button, Text, FormControl, FormLabel,  Textarea, Box, Image, Input } from '@chakra-ui/react';
 
-
-
-
-
 export const CreateQuickResponseObject = () => {
   const [title, setTitle] = useState('')  
-  const [url, setUrl] = useState(null);
-  const [description, setDescription] = useState('')
+  const [url, setUrl]  = useState('');
+  const [imgSrc, setImgSrc] = useState(null);
+  const [description, setDescription] = useState('');
 
-  // const [data, setData] = useState('ii')
-
-
-
-  /*  const createQuickResponseObject = async (data) => {
-    setIsLoading(true)
-    try {
-      await fetch('/api/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })			
-    } catch (e) {
-      setError(e)
-    } finally {
-      setIsLoading(false)
-    }
-    
-  }
-
-  if (error) {
-    return (
-      <Container>
-        <Alert status='error'>
-          <AlertIcon />
-          <AlertTitle mr={2}>Error!</AlertTitle>
-        </Alert>
-      </Container>)
-  }
-
-  if ((isLoading && !error)) return (
-    <Container>
-      <Progress size='xs' isIndeterminate colorScheme={"blackAlpha"} />
-    </Container>
-  ) */
 
   const send = () => {
     console.log(title);
@@ -56,19 +16,20 @@ export const CreateQuickResponseObject = () => {
         'Content-type':'application/json'
       },
       body:JSON.stringify({
-
-        valor:title
+        title,
+        description,
+        url
       })
     }
-
     fetch('http://localhost:4000/api/create/newqr', content).then((response) => {
       return response.json()
     }).then(data => {
-      setUrl(data.valor);
+      setImgSrc(data.imgData);
     }).catch((e)=>{
       console.log(e)
     }) 
   }
+
 
   return (
     <Container maxW='container.lg' centerContent py={5} >
@@ -91,13 +52,20 @@ export const CreateQuickResponseObject = () => {
               setDescription(newValue)
             }} />
           </FormControl>
+          <FormControl>
+            <FormLabel htmlFor='url'>url</FormLabel>
+            <Input name='url' value={url} onChange={(event) => {
+              const newValue = event.target.value
+              setUrl(newValue)
+            }} />
+          </FormControl>
 
-          {url && <Box boxSize='sm'>
-            <Image src={url}/>
+          {imgSrc && <Box boxSize='sm'>
+            <Image src={imgSrc}/>
           </Box>}
 
           <HStack w='100%' justify="center">
-            <Button onClick={() => {send()}}> cancel </Button>
+            <Button onClick={() => {send()}}> Create new QR </Button>
             {/* <Button onClick={async () => {
               const formValues = {
                 title,
