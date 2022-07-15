@@ -25,7 +25,8 @@ export function QuickResponseObjects() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const rawResult = await fetch('/api/codes')
+      console.log('holaaa')
+      const rawResult = await fetch('http://localhost:4000/api/codes')
       console.log(rawResult)
 
       if (!rawResult) return
